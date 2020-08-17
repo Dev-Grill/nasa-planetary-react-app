@@ -1,12 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions' 
 
 function App({getPictures}) {
 
+
+	const [pictures, set_pictures] =  useState([])
+
 	useEffect(() => {
-		getPictures()
+
+		async function fetchData(){
+			await getPictures()
+			.then(response => {
+				console.log(response.data)
+			})
+		}
+
+		fetchData()
+
 	})
 
 	return (
