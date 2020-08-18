@@ -4,61 +4,61 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions' 
 
-function App({getPictures, getRemotePicture}) {
+function App({getPictures, loadDatabase, getPrevDate, getNextDate, findOrCreate, likePicture, disPicture, pictureReducer}) {
 
-	const [picture, set_picture] =  useState(null)
-	const [selected_date, set_selected_date] =  useState(moment().format("YYYY-MM-DD"))
-
-	//   const getNextDate = (date) => {
-	// 	let prevDate = new Date(date);
-	  
-	// 	prevDate = prevDate.setDate(prevDate.getDate() + 1);
-	  
-	// 	return `${prevDate.getFullYear()}-${prevDate.getMonth() + 1}-${prevDate.getDate()}`;
-	// };
-	  
+	const { picture, likes } = pictureReducer
+	const [selected_date, set_selected_date] =  useState(moment("2020-08-12").format("YYYY-MM-DD"))
+	
 	useEffect(() => {
 		async function fetchData(){
-			await fetchRemotePicture(selected_date)
+			await loadDatabase()
 		}
 		fetchData()
 	}, [true])
 
-
 	const fetchRemotePicture = async (date) => {
-		await getRemotePicture(date)
-		.then(response => {
-			set_picture(response.data)
-		})
+		// await getRemotePicture(date)
+	}
+	
+	const handleLike = (picture) => {
+		likePicture(picture)
+	}
+	
+	const handleUnlike = (picture) => {
+		disPicture(picture)
 	}
 
-	const getPrevDate = async () => {
-		const new_date = moment(selected_date).subtract(1, 'day').format("YYYY-MM-DD")
-		await fetchRemotePicture(new_date)
-		set_selected_date(new_date)
-	};
-	  
+	if(picture){
+		return (
+			<div className="App">
+				<header className="App-header">
+					{picture.date} 
+					{picture.favorite && <span> liked</span>}
+				</header>
 
-	const getNextDate = async () => {
-		const new_date = moment(selected_date).add(1, 'day').format("YYYY-MM-DD")
-		await fetchRemotePicture(new_date)
-		set_selected_date(new_date)
-	};
-	  
-	return (
-		<div className="App">
-			<header className="App-header">
-				{JSON.stringify(picture)}
-			</header>
+				<h1 onClick={() => getPrevDate(picture.date)}>back</h1>
+				<h1 onClick={() => getNextDate(picture.date)}>forward</h1>
+	
+				<h1 onClick={() => handleLike(picture)}>Like Picture</h1>
+				<h1 onClick={() => handleUnlike(picture)}>Unlike Picture</h1>
+				
+				likes
+				<header className="App-header">
+					{JSON.stringify(likes)}
+				</header>
+			</div>
+		)
+	}
+	else {
+		return (
+			<h1>loanding</h1>
+		)
+	}
 
-			<h1 onClick={() => getPrevDate()}>back</h1>
-			<h1 onClick={() => getNextDate()}>forward</h1>
-		</div>
-	);
 }
 
-const mapStateToProps = (state) => ({
-	pictureReducer: state.pictureReducer
+const mapStateToProps = ({pictureReducer}) => ({
+	pictureReducer
 });
 
 export default connect(mapStateToProps, actions)(App);

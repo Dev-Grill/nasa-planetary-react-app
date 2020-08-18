@@ -1,1 +1,2 @@
-export const FAVORITE_PICTURES = 'favorite_pictures';
+export const UPDATE_LIKES = 'UPDATE_LIKES';
+export const SET_CURRENT_PICTURE = 'SET_CURRENT_PICTURE';
