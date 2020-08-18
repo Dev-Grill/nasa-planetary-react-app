@@ -15,10 +15,6 @@ function App({getPictures, loadDatabase, getPrevDate, getNextDate, findOrCreate,
 		}
 		fetchData()
 	}, [true])
-
-	const fetchRemotePicture = async (date) => {
-		// await getRemotePicture(date)
-	}
 	
 	const handleLike = (picture) => {
 		likePicture(picture)
