@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import moment from 'moment'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions' 
 
 import Header from "../components/Header"
 import Layout from "../components/Layout"
-import Record from "../components/Record"
 
-import Carousel from 'react-bootstrap/Carousel'
+
+import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
+
 
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 
-import Container from 'react-bootstrap/Container'
-
-import LoadingOverlay from 'react-loading-overlay'
-import BounceLoader from 'react-spinners/BounceLoader'
 
 function App(props) {
 
@@ -41,9 +36,11 @@ function App(props) {
 	return (
 		<Layout loanding={loading}>
 			<Header />
-            <CardDeck style={{marginTop: 50, margin: 10}}>
+                <Container>
+                <Row>
                 {pictures.map((picture, index) => 
-                    <Card style={{ width: '48rem' }}>
+                    <Col xs={6} md={4} style={{marginTop: 20}}>
+                    <Card style={{ width: '18rem' }}>
                         <Card.Img variant="top" src={picture.url} />
                         <Card.Body>
                             <Card.Title>{picture.title}</Card.Title>
@@ -53,8 +50,10 @@ function App(props) {
                             <small className="text-muted">Last updated 3 mins ago</small>
                         </Card.Footer>
                     </Card>
+                    </Col>
                 )}
-            </CardDeck>
+                </Row>
+              </Container>
 		</Layout>
 	)
 

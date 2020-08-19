@@ -12,7 +12,6 @@ const dummy = {
     url: "https://www.govava.com/assets/front/social_links/no-record-found.png"
 }
 
-
 const getRemotePicture = async (date) => {
 
     store.dispatch({type: TYPE.LOADING, payload: true})
@@ -99,10 +98,14 @@ export const loadDatabase = () => async dispatch => {
 }
 
 export const getPictures = (request_body) => async dispatch => {
-    
+
     const records = []
 
     const pictures = JSON.parse(localStorage.getItem('pictures'));
+
+    if(pictures == null || pictures.length == 0){
+        localStorage.setItem('pictures', "[]")
+    }
 
     pictures.map(picture => {
         if(picture.favorite == true){
