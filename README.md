@@ -1,21 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Goal 
 
-In the project directory, you can run:
+ create a single page application which consumes ​NASA's Astronomy Picture of the Day (APOD) API​ to display the pictures of different days
 
-### `yarn start`
+### Functionality
+1. Like Picture
+1. Unlike Picture
+1. Caching System / Offline Stroge
+1. Next and Prev day Image selection
+1. Dropdown Date Selection
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 
