@@ -1,9 +1,10 @@
 import * as TYPES from '../types'
 
 const initialState = {
-  pictures: [],
-  picture: null,
-  likes: [],
+	likes: [],
+	pictures: [],
+	picture: null,
+	no_record: false,
 }
 
 export default function (state = initialState, action) {
