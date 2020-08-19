@@ -37,10 +37,10 @@ function Record(props) {
                     <p onClick={() => handleControl('right')} className="right-control">{'>'}</p>
                     <p style={{marginTop: 10}}>{picture.explanation}</p>
                 </Col>
-                <Col md={{ span: 6}}>
+                {(!picture.dummy) && <Col md={{ span: 6}}>
                     {(!picture.favorite) && <Button onClick={() => likePicture(picture)} variant="success">Like</Button>}
                     {(picture.favorite) && <Button  onClick={() => disPicture(picture)} variant="danger">Unlike</Button>}
-                </Col>
+                </Col>}
             </Row>
         </Container>
 	)

@@ -36,6 +36,12 @@ export default function (state = initialState, action) {
 				loading: payload
 			}
 
+		case TYPES.UPDATE_PICTURES:
+			return {
+				...state,
+				pictures: payload
+			}
+
 		default:
 			return state
 		}

@@ -71,7 +71,6 @@ export const getPicture = (date) => async dispatch => {
 
 export const loadDatabase = () => async dispatch => {
 
-    // const current_date = moment("2020-08-12").format("YYYY-MM-DD")
     const current_date = moment().format("YYYY-MM-DD")
 
     const pictures = JSON.parse(localStorage.getItem('pictures'));
@@ -97,42 +96,22 @@ export const loadDatabase = () => async dispatch => {
             await getRemotePicture(current_date)
         }
     }
-
-    
-
-    // if(pictures == null){
-    //     // await getRemotePicture(current_date)
-
-    // }
-    // else {
-    // }
-
-    
-    // if(backend_api_response.data.length != 0){
-    //     const records = backend_api_response.data;
-
-    //     records.map((record, index) => {
-    //         if(record.favorite === true){
-    //             dispatch({type: TYPE.UPDATE_LIKES, payload: record})
-    //         }
-    //     })
-
-    //     const todays_record =  records.find(record => record.date === current_date)
-        
-    //     if(todays_record){
-    //         dispatch({type: TYPE.SET_CURRENT_PICTURE, payload: todays_record})
-    //     }
-    //     else {
-    //         await getRemotePicture(current_date)
-    //     }
-    // }
-    // else {
-    //     await getRemotePicture(current_date)
-    // }
 }
 
 export const getPictures = (request_body) => async dispatch => {
-    return backend_api_instance.get('/pictures')
+    
+    const records = []
+
+    const pictures = JSON.parse(localStorage.getItem('pictures'));
+
+    pictures.map(picture => {
+        if(picture.favorite == true){
+            records.push(picture)
+        }
+    })
+
+    dispatch({type: TYPE.UPDATE_PICTURES, payload: records})
+
 }
 
 export const likePicture = (request_body) => async dispatch => {
