@@ -15,6 +15,8 @@ function Record(props) {
         handleInputOnChange
     } = props
 
+    console.log(picture, "kfjdfj")
+
 	return (
         <Container>
             <Row style={{marginTop: 70}}>
@@ -29,7 +31,13 @@ function Record(props) {
             
             <Row style={{height: 600}}>
                 <Col style={{marginBottom: 10}} md={{span: 12}}>
-                    <img src={picture.url} style={{height: 600, width: '100%'}} className="img-fluid" alt="Responsive image" />
+                    {(picture.media_type == "image") && <img src={picture.url} style={{height: 600, width: '100%'}} className="img-fluid" alt="Responsive image" />}
+                    {(picture.media_type == "video") && <video width="400" controls>
+                        <source src="https://www.youtube.com/embed/2WRgXvdasm0" type="video/mp4" />
+                        <source src="https://www.youtube.com/embed/2WRgXvdasm0" type="video/ogg" />
+                    </video>}
+                    <video src="https://www.youtube.com/embed/2WRgXvdasm0" controls>
+</video>
                     <p onClick={() => handleControl('left')} className="left-control">{'<'}</p>
                     <p onClick={() => handleControl('right')} className="right-control">{'>'}</p>
                     <p style={{marginTop: 10}}>{picture.explanation}</p>
