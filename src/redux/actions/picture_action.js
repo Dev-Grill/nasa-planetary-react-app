@@ -9,6 +9,7 @@ const { REACT_APP_NASA_API_KEY } = process.env;
 const dummy = {
     dummy: true,
     title: "Record not Found",
+    media_type: "image",
     url: "https://www.govava.com/assets/front/social_links/no-record-found.png"
 }
 
