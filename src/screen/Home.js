@@ -18,7 +18,19 @@ import Container from 'react-bootstrap/Container'
 import LoadingOverlay from 'react-loading-overlay'
 import BounceLoader from 'react-spinners/BounceLoader'
 
-function App({getPictures, getPicture, loadDatabase, getPrevDate, getNextDate, findOrCreate, likePicture, disPicture, pictureReducer}) {
+function App(props) {
+
+	const {
+		loading, 
+		getPicture, 
+		loadDatabase, 
+		getPrevDate, 
+		getNextDate, 
+		findOrCreate, 
+		likePicture, 
+		disPicture, 
+		pictureReducer
+	} = props
 
 	const { picture, likes } = pictureReducer
 	const [selected_date, set_selected_date] =  useState(moment("2020-08-12").format("YYYY-MM-DD"))
@@ -39,14 +51,29 @@ function App({getPictures, getPicture, loadDatabase, getPrevDate, getNextDate, f
 	}
 
 	const handleInputOnChange = (e) => {
-		// console.log(e.target.value);
 		getPicture(e.target.value)
 	}
 
+	const handleControl = (type) => {
+		if(type == "left"){
+			getPrevDate(picture.date)
+		}
+
+		if(type == "right"){
+			getNextDate(picture.date)
+		}
+	}
+
 	return (
-		<Layout loanding={false}>
+		<Layout loanding={loading}>
 			<Header />
-			{(picture) && <Record picture={picture} />}
+			{(picture) && <Record 
+				picture={picture} 
+				disPicture={disPicture}
+				handleControl={handleControl}
+				likePicture={likePicture} 
+				handleInputOnChange={handleInputOnChange}
+			/>}
 		</Layout>
 	)
 
