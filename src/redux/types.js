@@ -1,2 +1,4 @@
 export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const SET_CURRENT_PICTURE = 'SET_CURRENT_PICTURE';
+export const LOADING = 'LOADING';
+export const UPDATE_PICTURES = 'UPDATE_PICTURES';

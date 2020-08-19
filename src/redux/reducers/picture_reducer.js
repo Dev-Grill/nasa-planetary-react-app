@@ -1,9 +1,11 @@
 import * as TYPES from '../types'
 
 const initialState = {
-  pictures: [],
-  picture: null,
-  likes: [],
+	likes: [],
+	pictures: [],
+	loading: false,
+	picture: null,
+	no_record: false,
 }
 
 export default function (state = initialState, action) {
@@ -26,6 +28,18 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				picture: payload
+			}
+
+		case TYPES.LOADING:
+			return {
+				...state,
+				loading: payload
+			}
+
+		case TYPES.UPDATE_PICTURES:
+			return {
+				...state,
+				pictures: payload
 			}
 
 		default:
