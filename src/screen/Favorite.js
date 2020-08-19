@@ -11,10 +11,11 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
+import ReactPlayer from 'react-player'
+
 
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
-
 
 function App(props) {
 
@@ -41,7 +42,8 @@ function App(props) {
                 {pictures.map((picture, index) => 
                     <Col xs={6} md={4} style={{marginTop: 20}}>
                     <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={picture.url} />
+                        {(picture.media_type == "image") && <Card.Img variant="top" src={picture.url} />}
+                        {(picture.media_type == "video") && <center><ReactPlayer className="video-player-2" url={picture.url} /></center>}
                         <Card.Body>
                             <Card.Title>{picture.title}</Card.Title>
                             <Card.Text>{picture.explanation}</Card.Text>
