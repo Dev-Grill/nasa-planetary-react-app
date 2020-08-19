@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 
+import ReactPlayer from 'react-player'
+
 function Record(props) {
 
     const {
@@ -14,8 +16,6 @@ function Record(props) {
         likePicture, 
         handleInputOnChange
     } = props
-
-    console.log(picture, "kfjdfj")
 
 	return (
         <Container>
@@ -32,12 +32,7 @@ function Record(props) {
             <Row style={{height: 600}}>
                 <Col style={{marginBottom: 10}} md={{span: 12}}>
                     {(picture.media_type == "image") && <img src={picture.url} style={{height: 600, width: '100%'}} className="img-fluid" alt="Responsive image" />}
-                    {(picture.media_type == "video") && <video width="400" controls>
-                        <source src="https://www.youtube.com/embed/2WRgXvdasm0" type="video/mp4" />
-                        <source src="https://www.youtube.com/embed/2WRgXvdasm0" type="video/ogg" />
-                    </video>}
-                    <video src="https://www.youtube.com/embed/2WRgXvdasm0" controls>
-</video>
+                    {(picture.media_type == "video") && <center><ReactPlayer className="video-player" url={picture.url} /></center>}
                     <p onClick={() => handleControl('left')} className="left-control">{'<'}</p>
                     <p onClick={() => handleControl('right')} className="right-control">{'>'}</p>
                     <p style={{marginTop: 10}}>{picture.explanation}</p>
@@ -58,6 +53,7 @@ Record.defaultProps = {
     handleInputOnChange: () => {},
     picture: {
         dummy: true,
+        media_type: "image",
         title: "Record not Found",
         url: "https://www.govava.com/assets/front/social_links/no-record-found.png"
     }
