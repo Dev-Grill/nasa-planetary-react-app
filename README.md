@@ -17,7 +17,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ![GitHub Logo](/diagram.png)
 
 The Diagram above illustrate I scaled the application request:
-1. The system tries to serve the use 
 
 ### How to run
 
