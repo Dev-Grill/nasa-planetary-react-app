@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 
-import moment from 'moment'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions' 
 
@@ -11,7 +10,6 @@ import Record from "../components/Record"
 function App(props) {
 
 	const {
-		loading, 
 		getPicture, 
 		loadDatabase, 
 		getPrevDate, 
@@ -21,7 +19,9 @@ function App(props) {
 		pictureReducer
 	} = props
 
-	const { picture } = pictureReducer
+	const { picture, loading } = pictureReducer
+
+	console.log(pictureReducer)
 	
 	useEffect(() => {
 		async function fetchData(){
@@ -46,7 +46,7 @@ function App(props) {
 	}
 
 	return (
-		<Layout loanding={loading}>
+		<Layout loading={loading}>
 			<Header />
 			{(picture) && <Record 
 				picture={picture} 

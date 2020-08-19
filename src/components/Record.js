@@ -5,9 +5,6 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 
-import LoadingOverlay from 'react-loading-overlay'
-import BounceLoader from 'react-spinners/BounceLoader'
-
 function Record(props) {
 
     const {
@@ -44,6 +41,19 @@ function Record(props) {
             </Row>
         </Container>
 	)
+}
+
+Record.defaultProps = {
+    disPicture: () => {},
+    likePicture: () => {},
+    handleControl: () => {},
+    handleInputOnChange: () => {},
+    picture: {
+        dummy: true,
+        title: "Record not Found",
+        url: "https://www.govava.com/assets/front/social_links/no-record-found.png"
+    }
+    
 }
 
 export default Record;

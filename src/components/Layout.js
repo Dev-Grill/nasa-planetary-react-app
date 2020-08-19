@@ -3,10 +3,10 @@ import React from 'react';
 import LoadingOverlay from 'react-loading-overlay'
 import BounceLoader from 'react-spinners/BounceLoader'
 
-function Layout({loanding, children}) {
+function Layout({loading, children}) {
 	return (
         <div className="layout-style">
-            <LoadingOverlay active={loanding} spinner={<BounceLoader />}>
+            <LoadingOverlay active={loading} spinner={<BounceLoader />}>
                 {children}
             </LoadingOverlay>
         </div>

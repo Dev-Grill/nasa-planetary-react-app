@@ -70,6 +70,8 @@ export const getPicture = (date) => async dispatch => {
 
 export const loadDatabase = () => async dispatch => {
 
+    dispatch({type: TYPE.LOADING, payload: true})
+
     const current_date = moment().format("YYYY-MM-DD")
 
     const pictures = JSON.parse(localStorage.getItem('pictures'));
@@ -90,9 +92,11 @@ export const loadDatabase = () => async dispatch => {
         
         if(todays_record){
             dispatch({type: TYPE.SET_CURRENT_PICTURE, payload: todays_record})
+            dispatch({type: TYPE.LOADING, payload: false})
         }
         else {
             await getRemotePicture(current_date)
+            dispatch({type: TYPE.LOADING, payload: false})
         }
     }
 }
