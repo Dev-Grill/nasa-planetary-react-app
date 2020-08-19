@@ -22,6 +22,6 @@ The Diagram above illustrate I scaled the application request:
 ### How to run
 
 1. run `yarn` or `npm install`
-1. Update your `.env` file
+1. Update your `.env` file `REACT_APP_NASA_API_KEY=xxxxxxxxxxxxxxxxxxx`
 1. run `yarn start` or `npm run start`
 
